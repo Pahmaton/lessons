@@ -3,3 +3,18 @@
 
 
 - http протокол
+
+вопросы в чем разница между get/post/delete
+различия cтатус кодов 200/300/400/500
+разница между query_string и body
+
+httpbin.org/get
+httpbin.org/post
+httpbin.org/delete
+httpbin.org/options
+
+httpbin.org/status/200
+httpbin.org/status/500
+
+httpbin.org/ip
+httpbin.org/user-agent

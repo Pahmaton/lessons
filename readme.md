@@ -2,7 +2,7 @@
 - https://djbook.ru/rel1.9/intro/tutorial01.html
 
 
-- http протокол
+# http протокол
 
 вопросы в чем разница между get/post/delete
 различия cтатус кодов 200/300/400/500
@@ -18,3 +18,10 @@ httpbin.org/status/500
 
 httpbin.org/ip
 httpbin.org/user-agent
+
+
+
+# django
+https://docs.djangoproject.com/en/3.0/intro/tutorial01/#creating-the-polls-app
+
+http://localhost:8000/admin

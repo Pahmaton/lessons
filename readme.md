@@ -25,3 +25,10 @@ httpbin.org/user-agent
 https://docs.djangoproject.com/en/3.0/intro/tutorial01/#creating-the-polls-app
 
 http://localhost:8000/admin
+
+
+# cтили
+* сделать наследование шаблонов
+* отцентровать index.html содержимое
+* добавить картинку к голосваниям
+

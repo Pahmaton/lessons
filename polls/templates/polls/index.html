@@ -6,15 +6,15 @@
     </head>
 
     <body>
-        <div>
-            <img src="{% static 'polls/images/image.png' %}">
-            <div>
-                <h3>Доступные голосования:</h3>
-            </div>
+        <div><center>
+            <img src="{% static 'polls/images/image.png' %}" width="1920" height="705">
+            <h1>Здесь ваш <u><em>голос</em></u> дейтсвительно может стать рещающим!</h1>
+            <h6>или нет...</h6>
+            <h3>Доступные голосования:</h3>
             {% if latest_question_list %}
                 <ul>
                 {% for question in latest_question_list %}
-                    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                    <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
                 {% endfor %}
                 </ul>
             {% else %}

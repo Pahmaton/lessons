@@ -4,3 +4,4 @@ SpeechRecognition
 PyAudio
 wheel
 setuptools
+python-speech-features-0.6

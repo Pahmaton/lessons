@@ -22,13 +22,18 @@ httpbin.org/user-agent
 
 
 # django
-https://docs.djangoproject.com/en/3.0/intro/tutorial01/#creating-the-polls-app
+python manage.py makemigrations polls
 
-http://localhost:8000/admin
+http://localhost:8000/voice
 
 
 # cтили
 * сделать наследование шаблонов
 * отцентровать index.html содержимое
 * добавить картинку к голосваниям
+
+#Время
+8 слов = 2-2,5 секунды
+
+160 слов = 9-9,5 секуднды
 

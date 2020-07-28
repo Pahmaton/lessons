@@ -1,42 +1,67 @@
-URL = "/voice/recognize/"
+recognizeUrl = "/voice/recognize/"
 
-navigator.mediaDevices.getUserMedia({ audio: true})
-    .then(stream => {
-        const mediaRecorder = new MediaRecorder(stream);
-        let voice = [];
-        document.querySelector('#start').addEventListener('click', function(){
-            mediaRecorder.start();
-        });
+const record = document.getElementById('start');
+const stop = document.getElementById('stop');
+const container = document.getElementById('messages');
+let audio_context;
+let recorder;
 
-        mediaRecorder.addEventListener("dataavailable",function(event) {
-            voice.push(event.data);
-        });
+function startUserMedia(stream) {
+    audio_context = new AudioContext;
+    let input = audio_context.createMediaStreamSource(stream);
+    recorder = new Recorder(input, {numChannels: 1});
+}
 
-        document.querySelector('#stop').addEventListener('click', function(){
-            mediaRecorder.stop();
-        });
+function startRecording(button) {
+    recorder && recorder.record();
+    button.disabled = true;
+    button.nextElementSibling.disabled = false;
+}
 
-        mediaRecorder.addEventListener("stop", function() {
-            const audioBlob = new Blob(voice, {
-                type: 'audio/wav'
-            });
+function stopRecording(button) {
+    recorder && recorder.stop();
+    button.disabled = true;
+    button.previousElementSibling.disabled = false;
 
-            let fd = new FormData();
-            fd.append('voice', audioBlob);
-            sendVoice(fd);
-            voice = [];
+    // create WAV download link using audio data blob
+    createDownloadLink();
+
+    recorder.clear();
+  }
+
+function createDownloadLink() {
+    recorder && recorder.exportWAV(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var au = document.createElement('audio');
+      var hf = document.createElement('a');
+
+      au.controls = true;
+      au.src = url;
+      hf.href = url;
+      hf.download = new Date().toISOString() + '.wav';
+      hf.innerHTML = hf.download;
+      li.appendChild(au);
+      li.appendChild(hf);
+      container.appendChild(li);
+
+
+      const formData = new FormData();
+      formData.append('voice', blob);
+      fetch(recognizeUrl, {
+          method: 'POST',
+          body: formData
+        })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log('Success:', result);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
         });
     });
+  }
 
-async function sendVoice(form) {
-    let promise = await fetch(URL, {
-        method: 'POST',
-        body: form});
-    if (promise.ok) {
-        let response = await promise.json();
-        console.log(response);
-        let audio = document.createElement('p');
-        audio.textContent = response.text;
-        document.querySelector('#messages').appendChild(audio);
-    }
-}
+window.onload = function init() {
+    navigator.mediaDevices.getUserMedia({audio: true}).then((stream) => startUserMedia(stream));
+};

@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -5,4 +7,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('voice/', include('voice.urls')),
-]
+    path('d/', include('d.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

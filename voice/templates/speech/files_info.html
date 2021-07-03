@@ -1,0 +1,23 @@
+{% extends "speech/base.html" %}
+
+{% block body %}
+<h1 class="display-3 text-center pt-md-5">Информация о файле <strong>"#{{files_info.id}}"</strong></h1>
+<div class="pt-md-5 pl-md-4">
+    <h3><span class="badge badge-pill badge-dark">Файл:</span></h3>
+    <audio controls>
+        <source src="{{ files_info.files.url }}" type="audio/wav;">
+    </audio>
+    <div class="pt-md-4">
+    <h3><span class="badge badge-pill badge-primary">Имя файла:</span> Файл "#{{files_info.id}}"</h3>
+    <h3><span class="badge badge-pill badge-primary">Текст файла:</span>
+        <a class="badge rounded-pill btn-secondary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Нажмите чтобы увидеть текст
+        </a></h3>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                {{ files_info.real_file_name }}
+            </div>
+        </div>
+    <h3><span class="badge badge-pill badge-primary">Время записи файла:</span> {{ files_info.file_time }}</h3>
+</div>
+{% endblock %}

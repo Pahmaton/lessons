@@ -1,0 +1,65 @@
+{% extends "speech/base.html" %}
+{% load static %}
+{% block body %}
+<h1 class="display-1 text-center pt-md-3">Мои записи</h1>
+<div class="pl-md-2"><h4><span class="badge badge-pill badge-secondary">Количество ваших записей: {{ files.count }}</span></h4></div>
+<div class="pt-md-4"></div>
+<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% for file in files %}
+    <div class="pt-md-1">
+    <div class="media">
+        <audio controls>
+            <source src="{{ file.files.url }}" type="audio/wav;">
+        </audio>
+        <div class="media-body">
+            <h5 class="mt-0">{{ file.file_name }}</h5>
+            {{ file.text }}
+        </div>
+        <div class="mx-auto" style="width: 1130px;">
+            <a href="{% url 'voice:del_files' file_id=file.id%}" class="btn btn-danger nav-item" data-toggle="tooltip" data-placement="bottom" title="Удалить запись"><img src="{% static 'voice/images/icon_delete.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+            <a href="{% url 'voice:files_info' file_id=file.id%}" class="btn btn-info nav-item" data-toggle="tooltip" data-placement="bottom" title="Информация о записи"><img src="{% static 'voice/images/icon_info.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+            <a href="#" class="btn btn-secondary nav-item" data-toggle="modal" data-target="#exampleModal-{{ file.id }}" data-placement="bottom" title="Переименовать запись"><img src="{% static 'voice/images/icon_rename.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+            {{ file.file_time }}
+        </div>
+
+    <div class="modal fade" id="exampleModal-{{ file.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-{{ file.id }}" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel-{{ file.id }}">Новое имя для файла <strong>#{{ file.id }}</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              {% if form.errors %}
+              <p>{{ form.errors }}</p>
+              {% endif %}
+            <form action="{% url 'voice:files_rename' file_id=file.id %}" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                  {% csrf_token %}
+                  {{ form }}
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">Закрыть</button>
+                    <input type="submit" class="btn btn-primary rounded-pill" value="Сохранить"/>
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+{% endfor %}
+{% if files.count == 0 %}
+<div class="text-center "><h1>Здесь пусто :(</h1>
+    <h5 class="pt-md-3">Вы пока что не сделали ни одной записи. Запись можно сделать, нажав на <a href="/voice/" class="text-decoration-none">Новая запись</a>.</h5>
+    </div>
+{% endif %}
+{% endblock %}

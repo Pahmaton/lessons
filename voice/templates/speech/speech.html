@@ -1,28 +1,28 @@
-<!DOCTYPE html>
+{% extends "speech/base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-    <form method="POST" enctype="multipart/form-data">
+{% block body %}
+    <form class="pt-md-5 row justify-content-center " method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        {{ text|default:'' }}
+        <div class="pt-md-1 bg-dark text-light rounded">{{ form }}</div>
         <br />
-        <input type="submit" value="Сохранить" />
+        <div class="pr-md-1"></div>
+        <input type="submit" class="btn btn-secondary rounded-pill" value="Сохранить"/>
     </form>
 
     <br /><br />
-    <div>
-        <button id="start" onclick="startRecording(this)">Старт</button>
-        <button id="stop" onclick="stopRecording(this)">Стоп</button>
+    <div class="row justify-content-center">
+        {{ text|default:'' }}
+    </div>
+    <div class="row justify-content-center pt-md-3">
+        <button id="start" class="btn btn-success btn-lg rounded-pill" data-toggle="tooltip"  data-placement="bottom" title="Начать запись" onclick="startRecording(this)">Старт</button>
+        <div class="pr-md-1"></div>
+        <button id="stop" class="btn btn-danger btn-lg rounded-pill"  data-toggle="tooltip" data-placement="bottom" title="Остановить запись" onclick="stopRecording(this)">Стоп</button>
         <div id="messages"></div>
     </div>
 
     <script src="{% static "voice/recognizer.js" %}"></script>
     <script src="{% static "voice/voice.js" %}"></script>
-</body>
-</html>
+{% endblock body %}
+{%block notification %}
+{% endblock %}

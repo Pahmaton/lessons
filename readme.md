@@ -39,9 +39,23 @@ http://localhost:8000/voice
 
 
 # блоксхемы
+# рубрикатор текста (nltk)
+# привязывать текст к секундам аудио записи
 
-# придумать модель для хранения надиктованного
-# хранить аудио и текстовую расшифровку
-# научить функцию сохранять записи в модель recognize
+
+https://riptutorial.com/ru/nltk
+https://habr.com/ru/post/468141/
+https://habr.com/ru/post/467081/
+
 
 https://checkio.org/
+
+# python manage.py makemigrations voice
+# python manage.py migrate
+
+#Тесты
+Количество ошибок:
+-
+- старая модель: 17
+- новая модель: 6
+

@@ -25,8 +25,10 @@ function stopRecording(button) {
 
     // create WAV download link using audio data blob
     createDownloadLink();
-
+    $('<div class="alert alert-info alert-dismissible fade show notification" role="alert"><strong>Поздравляю!</strong> Запись успешно завершена. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>').insertAfter("form");
     recorder.clear();
+    button.disabled = false;
+
   }
 
 function createDownloadLink() {

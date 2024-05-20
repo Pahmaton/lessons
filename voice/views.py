@@ -9,7 +9,7 @@ import wave
 from django.conf import settings
 from .forms import NameForm, VoiceFile, RenameFile
 from .models import AudioFile
-model = Model(settings.BASE_DIR + "/model1")
+model = Model(settings.BASE_DIR + "/model")
 
 def speech(request):
     result = {

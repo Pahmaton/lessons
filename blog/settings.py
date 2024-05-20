@@ -19,7 +19,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'd.apps.CatalogConfig',
     'voice.apps.VoiceConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',

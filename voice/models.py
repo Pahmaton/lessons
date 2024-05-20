@@ -14,6 +14,12 @@ class AudioFile(models.Model):
     file_time = models.TextField()
     real_file_name = models.TextField()
 
+    class Meta:
+        verbose_name_plural = "Файлы записей"
+
+    def __str__(self):
+        return f'{self.file_name}'
+
 
 
 

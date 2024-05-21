@@ -2,79 +2,69 @@
 {% load static %}
 {% block body %}
 <div class="pt-md-5">
-    <div class="text-center">
-    <h1>Как перевести вашу речь в текст?</h1>
-        <div class="text-wrap mx-auto" style="width: 500px;">Если вы это читаете, значит у вас возникли трудности с разпознаванием вашей речи. Следуя шагам приведенным ниже вы с легкостью сможете распознать речь. Шаги описаны настолько подробно, насколько это возможно.
-        </div>
-        <h2 class="pt-md-5">Вот что нужно сделать</h2>
-        <div class="pt-md-5">
-        <div class="row justify-content-center">
-        <div class="row">
-            <div class="col-auto">
-              <div class="card" style="width: 18rem;">
-                <img src="{% static 'voice/images/1_step.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">1 шаг</h5>
-                <p class="card-text">Найдите кнопку "Новая запись" на верхней панели и нажмите на неё. Она находится справа от логотипа.</p>
-                </div>
-              </div>
-            </div>
-                <div class="col-auto">
-              <div class="card" style="width: 18rem;">
-                <img src="{% static 'voice/images/3-step.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">2 шаг</h5>
-                <p class="card-text">Нажмите кнопку "Разрешить" или "Allow", чтобы дать диктофону доступ к вашему микрофону.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-auto">
-              <div class="card" style="width: 18rem;">
-                <img src="{% static 'voice/images/2-step.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">3 шаг</h5>
-                    <p class="card-text">Нажмите кнопку <span class="badge badge-success">Старт</span> , скажите все то, что вам нужно распознать, после чего нажмите кнопку <span class="badge badge-danger">Стоп</span> .</p>
-                </div>
-              </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        <div class="pt-md-3">
-        <div class="row justify-content-center">
-        <div class="row">
-            <div class="col-auto">
-              <div class="card" style="width: 18rem;">
-                <img src="{% static 'voice/images/4-step.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">4 шаг</h5>
-                <p class="card-text">Найдите кнопку "Мои записи" на верхней панели и нажмите на неё. Она находится справа от кнопки "Новая запись".</p>
-                </div>
-              </div>
-            </div>
-                <div class="col-auto">
-              <div class="card" style="width: 18rem;">
-                <img src="{% static 'voice/images/5-step.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">5 шаг</h5>
-                <p class="card-text">Вы увидете вашу запись, снизу от названия которой будет распознанный текст. Вы можете прослушать свою запись.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-auto">
-              <div class="card" style="width: 18rem;">
-                <img src="{% static 'voice/images/6-step.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Дополнительно</h5>
-                    <p class="card-text">Вы можете удалить свою запись, нажав кнопку <span class="badge badge-danger">Удалить</span> или посмотреть информацию о нём, нажав <span class="badge badge-info">Информация о файле</span> .</p>
-                </div>
-              </div>
-            </div>
-        </div>
-        </div>
-        </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1> Как перевести вашу речь в текст? </h1>
     </div>
-    <div class="pt-md-5"></div>
-    <div class="pt-md-5"></div>
+    <div class="row justify-content-center mt-4">
+      <p class='font-weight-light text-center'>
+        Если вы это читаете, значит у вас возникли трудности с разпознаванием вашей речи. 
+        Следуя шагам приведенным ниже вы с легкостью сможете распознать речь. 
+        Шаги описаны настолько подробно, насколько это возможно.
+      </p>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col text-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Шаг 1</h5>
+            <p class="card-text">Найдите кнопку "Новая запись" на верхней панели и нажмите на неё. Она находится справа от логотипа.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Шаг 2</h5>
+            <p class="card-text">Нажмите кнопку "Разрешить" или "Allow", чтобы дать диктофону доступ к вашему микрофону.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Шаг 3</h5>
+            <p class="card-text">Нажмите кнопку <span class="badge badge-success">Старт</span> , скажите все то, что вам нужно распознать, после чего нажмите кнопку <span class="badge badge-danger">Стоп</span> .</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col text-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Шаг 4</h5>
+            <p class="card-text">Найдите кнопку "Мои записи" на верхней панели и нажмите на неё. Она находится справа от кнопки "Новая запись".</p>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Шаг 5</h5>
+            <p class="card-text">Вы увидете вашу запись, снизу от названия которой будет распознанный текст. Запись можно послушать.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Дополнительно</h5>
+            <p class="card-text">Вы можете удалить свою запись, нажав кнопку <span class="badge badge-danger">Удалить</span> или посмотреть информацию о нём, нажав <span class="badge badge-info">Информация о файле</span> .</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

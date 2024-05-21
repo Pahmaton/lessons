@@ -15,6 +15,8 @@ function startUserMedia(stream) {
 function startRecording(button) {
     recorder && recorder.record();
     button.disabled = true;
+    var stop = document.getElementById('stop');
+    stop.disabled = false;
     button.nextElementSibling.disabled = false;
 }
 
@@ -22,32 +24,16 @@ function stopRecording(button) {
     recorder && recorder.stop();
     button.disabled = true;
     button.previousElementSibling.disabled = false;
-
+    var last_el = document.getElementById('last_el');
     // create WAV download link using audio data blob
     createDownloadLink();
-    $('<div class="alert alert-info alert-dismissible fade show notification" role="alert"><strong>Поздравляю!</strong> Запись успешно завершена. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>').insertAfter("form");
+    $("<div class='container'><div class='row justify-content-center'><div class='spinner-border text-dark' role='status'><span class='sr-only'>Loading...</span></div></div><div class='row justify-content-center'>Подождите, текст распознается...</div></div>").insertAfter(last_el);
     recorder.clear();
     button.disabled = false;
-
   }
 
 function createDownloadLink() {
     recorder && recorder.exportWAV(function(blob) {
-      var url = URL.createObjectURL(blob);
-      var li = document.createElement('li');
-      var au = document.createElement('audio');
-      var hf = document.createElement('a');
-
-      au.controls = true;
-      au.src = url;
-      hf.href = url;
-      hf.download = new Date().toISOString() + '.wav';
-      hf.innerHTML = hf.download;
-      li.appendChild(au);
-      li.appendChild(hf);
-      container.appendChild(li);
-
-
       const formData = new FormData();
       formData.append('voice', blob);
       fetch(recognizeUrl, {
@@ -57,6 +43,8 @@ function createDownloadLink() {
         .then((response) => response.json())
         .then((result) => {
           console.log('Success:', result);
+          $('<div>123</div>')
+          window.location.href = 'my_files/';
         })
         .catch((error) => {
           console.error('Error:', error);

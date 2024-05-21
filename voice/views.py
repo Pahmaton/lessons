@@ -85,6 +85,7 @@ def recognize(request):
         if text == '':
             file_name = 'Пустое название'
             text = 'Текст пуст, потому что вы ничего не сказали'
+            real_file_name = ''
         else:
             text_list = text.split()
             real_file_name = text.capitalize() + '.'

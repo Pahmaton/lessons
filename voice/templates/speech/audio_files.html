@@ -2,26 +2,25 @@
 {% load static %}
 {% block body %}
 <h1 class="display-1 text-center pt-md-3">Мои записи</h1>
-<div class="pl-md-2"><h4><span class="badge badge-pill badge-secondary">Количество ваших записей: {{ files.count }}</span></h4></div>
+<div class="pl-md-2 row justify-content-center"><h4><span class="badge badge-pill badge-secondary">Количество ваших записей: {{ files.count }}</span></h4></div>
 <div class="pt-md-4"></div>
-<form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+
+<div class="container">
 {% for file in files %}
-    <div class="pt-md-1">
-    <div class="media">
+<div class="row">
+    <div class="col">
         <audio controls>
             <source src="{{ file.files.url }}" type="audio/wav;">
         </audio>
-        <div class="media-body">
-            <h5 class="mt-0">{{ file.file_name }}</h5>
+      </div>
+        <div class="media-body col-4 text-truncate">
+            <h5 class="text-truncate">{{ file.file_name }}</h5>
             {{ file.text }}
         </div>
-        <div class="mx-auto" style="width: 1130px;">
-            <a href="{% url 'voice:del_files' file_id=file.id%}" class="btn btn-danger nav-item" data-toggle="tooltip" data-placement="bottom" title="Удалить запись"><img src="{% static 'voice/images/icon_delete.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
-            <a href="{% url 'voice:files_info' file_id=file.id%}" class="btn btn-info nav-item" data-toggle="tooltip" data-placement="bottom" title="Информация о записи"><img src="{% static 'voice/images/icon_info.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
-            <a href="#" class="btn btn-secondary nav-item" data-toggle="modal" data-target="#exampleModal-{{ file.id }}" data-placement="bottom" title="Переименовать запись"><img src="{% static 'voice/images/icon_rename.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+        <div class="col-6">
+            <a href="{% url 'voice:del_files' file_id=file.id%}" class="btn btn-danger nav-item" data-toggle="tooltip" data-placement="bottom" title="Удалить запись"><img src="{% static 'voice/images/delete.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+            <a href="{% url 'voice:files_info' file_id=file.id%}" class="btn btn-info nav-item" data-toggle="tooltip" data-placement="bottom" title="Информация о записи"><img src="{% static 'voice/images/info.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+            <a href="#" class="btn btn-secondary nav-item" data-toggle="modal" data-target="#exampleModal-{{ file.id }}" data-placement="bottom" title="Переименовать запись"><img src="{% static 'voice/images/change.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
             {{ file.file_time }}
         </div>
 
@@ -52,11 +51,9 @@
         </div>
       </div>
     </div>
-    </div>
-    </div>
-
-
+</div>
 {% endfor %}
+  </div>
 {% if files.count == 0 %}
 <div class="text-center "><h1>Здесь пусто :(</h1>
     <h5 class="pt-md-3">Вы пока что не сделали ни одной записи. Запись можно сделать, нажав на <a href="/voice/" class="text-decoration-none">Новая запись</a>.</h5>

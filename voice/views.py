@@ -39,25 +39,6 @@ def speech(request):
                 rec.AcceptWaveform(data)
 
             text = json.loads(rec.FinalResult())['text']
-            res_list = text.split()
-
-            for word in result.keys():
-                if word in res_list:
-                    result[word] = res_list[res_list.index(word) + 1]
-            for word in questions.keys():
-                if word in res_list:
-                    questions[word] = res_list[res_list.index(word) + 2]
-
-            if questions['первый'] == 'да':
-                answer = 2
-            if questions['первый'] == 'нет':
-                answer = 1
-            form=NameForm({
-                'last_name': result['фамилия'],
-                'first_name': result['имя'],
-                'middle_name': result['отчество'],
-                'choice': answer
-            })
 
     else:
         form = NameForm()

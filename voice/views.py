@@ -12,17 +12,6 @@ from .models import AudioFile
 model = Model(settings.BASE_DIR + "/model")
 
 def speech(request):
-    result = {
-        'имя': None,
-        'фамилия': None,
-        'отчество': None,
-    }
-    questions = {
-        'первый': None,
-    }
-
-    answer=None
-
     text=None
 
     if request.method == "POST":
